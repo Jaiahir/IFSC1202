@@ -1,0 +1,6 @@
+x = input("Number of students: ")
+y = input("Number of apples: ")
+students = int(x)
+apples = int(y)
+print (apples//students)
+print (apples % students)
