@@ -1,9 +1,10 @@
 x = int(input("Enter a Number (zero to quit): "))
-sum = x
+sum = 0
+count = 0
 
-
-while x != 0:
-    avg = sum / x
+while x > 0:
+    sum += x
+    count +=1
     x = int(input("Enter a Number (zero to quit): "))
 else:
-    print('Average: ' + str(avg))
+    print('Average: ' + str(sum/count))

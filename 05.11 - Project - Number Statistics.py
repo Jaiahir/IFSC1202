@@ -1,23 +1,22 @@
+num = int(input("Enter a value (Zero to quit): "))
 count = 0
 sum = 0
-min = 0
-max = 0
+min = num
+max = num
 
-num = int(input(("Enter a value (Zero to quit): "))
+while num > 0:
+    sum += num
+    count += 1
+    if num > max:
+        max = num
 
-while num != 0:
-    sum += num    
-    average = sum / num
-    num = int(input(("Enter a value (Zero to quit): "))
-
-if (num > max): 
-    max = num;
-
-if (num < min):
-    min = num
+    if num < min:
+        min = num 
+    num = int(input("Enter a value (Zero to quit): "))
 
 
-print("Your average is: " + average)
-print("The sum is: " + sum)  
-print("Your maximum number is: " + max)
-print("Your minimum number is: " + min)
+print("Your count is: " + str(count))
+print("The sum is: " + str(sum))
+print("Your average is: " + str(sum/count))
+print("Your minimum number is: " + str(min))
+print("Your maximum number is: " + str(max))
