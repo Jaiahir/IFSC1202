@@ -1,20 +1,20 @@
-def FahrToCel():
-    f = float(input())
-    c = (f-32) * 5/9
-    return
-
 file = open("06.03 FTemps.txt", "r")
-file = open("06.03 FTemps.txt", "w")
+
+def FahrToCel(C):
+    C = (float(F) - 32)*5/9 
+    C = round(C,1)
+    return C
 
 recordcount = 0
-list = []
 
-while True:
-    line = file.readline()
-    if not line:
-        break
-    else:
-        list.append(float(line))
+for F in file:
+    C = (float(F) - 32)*5/9 
+    C = round(C,1)
+    file = open("06.03 CTemps.txt", "a") 
+    file.write(str(FahrToCel(C))) 
+    file.write('\n')
+    file.close()
+    recordcount = recordcount + 1
+    
+print(str(recordcount)+" records written")
 
-for f in list:
-        print()
