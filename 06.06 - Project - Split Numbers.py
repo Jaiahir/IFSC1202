@@ -1,42 +1,42 @@
-def isEven(num):
-    return num%2==0
+def isEven(x):
+    return x % 2 == 0
 
-def isOdd(num):
-    return num%2==1
+def isOdd(x):
+    return x % 2 == 1
 
-def isPrime(num):
-    if num<0:return False
-    if num==2 or num==3: return True
-    if num%2==0 or num<2: return False
-    for i in range(3,int(num**0.5)+1,2):
-        if num%i==0:
+def isPrime(x):
+    if x < 0: return False
+    if x == 2 or x == 3: return True
+    if x % 2 == 0 or x < 2: return False
+    for i in range(3, int(x**0.5) + 1,2):
+        if x % i == 0:
             return False
     return True
 
-def main():
-    filename="06.06 Numbers.txt"
+def mainOutput():
+    file = "06.06 Numbers.txt"
     evens=[]
     odds=[]
     primes=[]
-    with open(filename,'r') as infile:
+    with open(file,"r") as infile:
         for line in infile:
-            num = int(line.strip())
-            if isEven(num):evens.append(num)
-            elif isOdd(num):odds.append(num)
-            if isPrime(num):primes.append(num)
+            x = int(line.strip())
+            if isEven(x):evens.append(x)
+            elif isOdd(x):odds.append(x)
+            if isPrime(x):primes.append(x)
 
-    with open("06.06 Evennumbers.txt",'w+') as outfile:
-        for num in evens:
-            outfile.write('{}\n'.format(num))
+    with open("06.06 Evennumbers.txt",'w+') as file0:
+        for x in evens:
+            file0.write("{}\n".format(x))
+    with open("06.06 Evennumbers.txt", 'w+') as file0:
+        for x in odds:
+            file0.write("{}\n".format(x))
+    with open("06.06 Primenumbers.txt", 'w+') as file0:
+        for x in primes:
+            file0.write("{}\n".format(x))
 
-    with open("06.06 Evennumbers.txt", 'w+') as outfile:
-        for num in odds:
-            outfile.write('{}\n'.format(num))
-    with open("06.06 Primenumbers.txt", 'w+') as outfile:
-        for num in primes:
-            outfile.write('{}\n'.format(num))
-    print('{} even numbers'.format(len(evens)))
-    print('{} odd numbers'.format(len(odds)))
-    print('{} prime numbers'.format(len(primes)))
-    print('{} numbers read'.format(len(evens)+len(odds)))
-main()
+    print(len(evens), "even numbers")
+    print(len(odds), "odd numbers")
+    print(len(primes), "prime numbers")
+    print(len(evens)+len(odds), "numbers read")
+mainOutput()
