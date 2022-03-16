@@ -1,44 +1,45 @@
-list_population=[]
-list_change=[0]
-list_percent=[0]
+def changecalc(population):
+    pop = [None]
+    for i in range(1, len(population)):
+        pop.append(population[i] - population[i - 1])
+    return pop
 
-file = open("08.11 USPopulation.txt","r")
 
-for i in file:
-    list_population.append(int(i)*1000)
-file.close()
+def percentcalc(change, population):   
+    percentage = [None] 
+    for i in range(1, len(population)):
+        percentage.append(change[i] / population[i - 1] *100)
+    return percentage
 
-for i in range(41):
-    if(i>=1):
-        change=list_population[i]-list_population[i-1]
-        list_change.append(change)
-        percent_change=round((change/list_population[i-1])*100,2)
-        list_percent.append(percent_change)
-        j=0
+year = list(range(1950, 1991))
 
-print("Year\t\tPopulation\t\tChange\t\tPercent Change")
+file = open('08.11 USPopulation.txt', 'r')
 
-for year in range(1950,1991):
-    if(j==0):
-        print(year,"\t\t",list_population[j],"\t\t","N/A","\t\t","N/A")
-    else:
-        print(year,"\t\t",list_population[j],"\t\t",list_change[j],"\t",str(list_percent[j])+"%")
-        j+=1
+population = []
 
-average=sum(list_change)/41
+lines = file.readlines()
+for i in lines: 
+    population.append(int(i.rstrip("\n")) * 1000) 
 
-print("Average population change: ",change)
-maxi = list_change[1]
-mini = list_change[1]
-max_index=0
-min_index=0
+change = changecalc(population)
+percent = percentcalc(change, population) 
 
-for i in range(2,len(list_change)):
-    if(list_change[i]>maxi):
-        maxi=list_change[i]
-        max_index=i
-    if(list_change[i]<mini):
-        mini=list_change[i]
-        min_index=i
-print("Maximum change and year: ",maxi,1950+max_index)
-print("Minimum change and year: ",mini,1950+min_index)
+print("Year\tPopulation\tChange\tPercent Change")  
+
+for i in range(len(population)):
+    if i != 0: 
+        print(f"{year[i]}\t{population[i]}\t{change[i]}\t{percent[i]:.2f}%")
+    else:  
+        print(f"{year[i]}\t{population[i]}\t{change[i]}\t{percent[i]}")
+avgpop = sum(change[1:])/len(change)
+
+print("Average Change: ", round(avgpop))
+
+min = min(change[1:]) 
+min_year = year[change.index(min)]
+
+max = max(change[1:])
+max_year = year[change.index(max)]
+
+print("Minimum Change = ", min, {min_year})
+print("Maximum Change = ", max, {max_year}) 
